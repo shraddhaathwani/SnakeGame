@@ -39,8 +39,9 @@ function isCollide(snake) {
     return false;
 }
 
-function gameEngine(){
-    // Part 1: Updating the snake array & Food
+function updateSnakeArrayAndFood(){
+    
+    // Check the snake collided with itself
     if(isCollide(snakeArr)){
         gameOverSound.play();
         musicSound.pause();
@@ -74,8 +75,10 @@ function gameEngine(){
 
     snakeArr[0].x += inputDir.x;
     snakeArr[0].y += inputDir.y;
+}
 
-    // Part 2: Display the snake and Food
+function displaySnakeAndFood() {
+    
     // Display the snake
     board.innerHTML = "";
     snakeArr.forEach((e, index)=>{
@@ -91,14 +94,22 @@ function gameEngine(){
         }
         board.appendChild(snakeElement);
     });
+    
     // Display the food
     foodElement = document.createElement('div');
     foodElement.style.gridRowStart = food.y;
     foodElement.style.gridColumnStart = food.x;
     foodElement.classList.add('food')
     board.appendChild(foodElement);
+}
 
+function gameEngine() {
+    
+    // Part 1: Updating the snake array & Food
+    updateSnakeArrayAndFood();
 
+    // Part 2: Display the snake and Food
+    displaySnakeAndFood();
 }
 
 
