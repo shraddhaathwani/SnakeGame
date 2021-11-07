@@ -49,7 +49,8 @@ function updateSnakeArrayAndFood(){
         alert("Game Over. Press any key to play again!");
         snakeArr = [{x: 13, y: 15}];
         musicSound.play();
-        score = 0; 
+        score = 0;
+        return;
     }
 
     // If you have eaten the food, increment the score and regenerate the food
