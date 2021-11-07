@@ -16,4 +16,6 @@ Shraddha Athwani
 
 Sethuraman V
 
-# https://shraddhaathwani.github.io/SnakeGame/
+
+## Game Link
+https://shraddhaathwani.github.io/SnakeGame/
