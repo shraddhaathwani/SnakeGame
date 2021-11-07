@@ -39,17 +39,7 @@ function isCollide(snake) {
     return false;
 }
 
-function gameEngine(){
-    // Part 1: Updating the snake array & Food
-    if(isCollide(snakeArr)){
-        gameOverSound.play();
-        musicSound.pause();
-        inputDir =  {x: 0, y: 0}; 
-        alert("Game Over. Press any key to play again!");
-        snakeArr = [{x: 13, y: 15}];
-        musicSound.play();
-        score = 0; 
-    }
+function updateSnakeArrayAndFood(){
 
     // If you have eaten the food, increment the score and regenerate the food
     if(snakeArr[0].y === food.y && snakeArr[0].x ===food.x){
@@ -74,8 +64,10 @@ function gameEngine(){
 
     snakeArr[0].x += inputDir.x;
     snakeArr[0].y += inputDir.y;
+}
 
-    // Part 2: Display the snake and Food
+function displaySnakeAndFood() {
+    
     // Display the snake
     board.innerHTML = "";
     snakeArr.forEach((e, index)=>{
@@ -91,14 +83,36 @@ function gameEngine(){
         }
         board.appendChild(snakeElement);
     });
+    
     // Display the food
     foodElement = document.createElement('div');
     foodElement.style.gridRowStart = food.y;
     foodElement.style.gridColumnStart = food.x;
     foodElement.classList.add('food')
     board.appendChild(foodElement);
+}
 
+function gameEngine() {
+    
+    // Part 1: Verify Collision
+    
+    // Check the snake collided with itself
+    if(isCollide(snakeArr)){
+        gameOverSound.play();
+        musicSound.pause();
+        inputDir =  {x: 0, y: 0}; 
+        alert("Game Over. Press any key to play again!");
+        snakeArr = [{x: 13, y: 15}];
+        musicSound.play();
+        score = 0;
+        return;
+    }
+    
+    // Part 2: Updating the snake array & Food
+    updateSnakeArrayAndFood();
 
+    // Part 3: Display the snake and Food
+    displaySnakeAndFood();
 }
 
 
